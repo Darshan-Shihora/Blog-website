@@ -12,8 +12,8 @@ function Header() {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-cyan-700 mx-6 text-2xl font-bold"
-              : "mx-6 text-2xl font-normal"
+              ? "text-cyan-700 mx-6 text-xl font-bold"
+              : "mx-6 text-xl font-normal"
           }
           to="/"
         >
@@ -22,8 +22,8 @@ function Header() {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-cyan-700 mx-6 text-2xl font-bold"
-              : "mx-6 text-2xl font-normal"
+              ? "text-cyan-700 mx-6 text-xl font-bold"
+              : "mx-6 text-xl font-normal"
           }
           to="/blog"
         >
@@ -32,8 +32,8 @@ function Header() {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-cyan-700 mx-6 text-2xl font-bold"
-              : "mx-6 text-2xl font-normal"
+              ? "text-cyan-700 mx-6 text-xl font-bold"
+              : "mx-6 text-xl font-normal"
           }
           to="/about-me"
         >
