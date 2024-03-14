@@ -1,6 +1,7 @@
 import img from "../assests/travel.webp";
 import image from "../assests/blog.webp";
 import { Link } from "react-router-dom";
+import classes from "./Home.module.css";
 function Home() {
   return (
     <div className="h-auto text-center">
@@ -26,7 +27,7 @@ function Home() {
       <div className="relative m-auto mt-8 mb-12">
         <img className="m-auto" src={image} alt="" />
         <Link
-          className="absolute bottom-[8rem] right-[43rem] bg-white px-10 py-4 text-2xl font-serif text-sky-600 hover:text-white hover:bg-sky-500"
+          className={`absolute bottom-[45%] right-[45%] bg-white px-10 py-4 text-2xl font-serif text-sky-600 hover:text-white hover:bg-sky-500`}
           to="/blog"
         >
           Travel

@@ -5,6 +5,12 @@ import Blog from "./components/Blog";
 import AboutMe from "./components/About-me";
 
 function App() {
+  // const { pathname } = useLocation();
+
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // }, [pathname]);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -17,7 +23,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

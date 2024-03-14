@@ -28,7 +28,7 @@ function AboutMe() {
             Info@mySite.com
           </a>
         </div>
-        <img className="h-50 w-72" src={img} alt="Image" />
+        <img className="h-50 w-80" src={img} alt="Image" />
       </div>
     </div>
   );
