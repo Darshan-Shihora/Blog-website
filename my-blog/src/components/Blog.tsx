@@ -4,15 +4,13 @@ import heartImg from "../assests/icons8-heart-16.png";
 import eyeImg from "../assests/icons8-eye-16.png";
 import messageImg from "../assests/icons8-message-16.png";
 
-function Blog() {
+const Blog: React.FC<{ key: string; image: string; title: string }> = (
+  props
+) => {
   return (
     <div className=" block m-auto h-auto w-[60%] border-2 border-gray-100 my-8 pb-4 box-border shadow-sm">
-      <Link to="/blog/the-girl-from-ipanema">
-        <img
-          className=""
-          src="https://static.wixstatic.com/media/ae5901bd4fda41009c4cc4a19bb70d05.jpg/v1/fill/w_1175,h_661,fp_0.50_0.50,q_90,enc_auto/ae5901bd4fda41009c4cc4a19bb70d05.jpg"
-          alt=""
-        />
+      <Link to={`/blog/${props.key}`}>
+        <img src={`${props.image}`} alt="" />
       </Link>
       <div className="flex m-auto my-6 ml-6">
         <img className="size-14 mr-2" src={img} alt="" />
@@ -22,26 +20,26 @@ function Blog() {
         </div>
       </div>
       <Link
-        to="/blog/the-girl-from-ipanema"
+        to={`/blog/${props.key}`}
         className="ml-6 text-3xl font-serif font-medium hover:text-sky-500"
       >
-        The Girl from Ipanema
+        {props.title}
       </Link>
       <div className="border-t-2 flex mx-6 my-4 pt-3 relative">
         <p className="flex pr-4">
-          <img className="pr-[3px]" src={eyeImg} alt="" />
+          <img className="pr-[3px] w-6" src={eyeImg} alt="" />
           100
         </p>
         <p className="flex">
-          <img className="pr-[4px]" src={messageImg} alt="" />2
+          <img className="pr-[4px] w-6" src={messageImg} alt="" />2
         </p>
         <p className="flex absolute left-[96%]">
-          <img className="pr-[4px]" src={heartImg} alt="" />
+          <img className="pr-[4px] w-6" src={heartImg} alt="" />
           48
         </p>
       </div>
     </div>
   );
-}
+};
 
 export default Blog;
