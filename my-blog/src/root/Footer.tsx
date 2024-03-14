@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="w-full text-center flex justify-center items-center px-36 py-4 bg-gray-400">
-      <img className="pr-7 h-32 w-44" src={img} alt="" />
+      <img className="pr-7 h-32 w-40" src={img} alt="" />
       <div className="text-start">
         <p className="font-bold text-2xl">About Me</p>
         <p className="text-md font-normal font-serif py-2">

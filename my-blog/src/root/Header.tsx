@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
-    <nav className="bg-cyan-400 flex justify-between px-4 items-center">
+    <nav className=" bg-sky-400 flex justify-between px-4 items-center">
       <span className="text-3xl flex items-center font-bold pt-2">
         <img className="h-20 w-13 pb-[13px] pl-[6px]" src={img} alt="B" />
         log

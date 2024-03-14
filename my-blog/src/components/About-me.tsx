@@ -1,7 +1,7 @@
 import img from "../../src/assests/profile.png";
 function AboutMe() {
   return (
-    <div className="h-[70vh] text-center mt-8 mx-60 ">
+    <div className="h-[70vh] text-center my-8 mx-60 ">
       <h1 className="h-auto text-3xl font-bold text-start py-8">About me</h1>
       <div className="flex space-x-16">
         <div className="flex-col text-start font-serif">
@@ -28,7 +28,7 @@ function AboutMe() {
             Info@mySite.com
           </a>
         </div>
-        <img className="h-50 w-64" src={img} alt="Image" />
+        <img className="h-50 w-72" src={img} alt="Image" />
       </div>
     </div>
   );
