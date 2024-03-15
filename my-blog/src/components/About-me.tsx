@@ -25,10 +25,10 @@ function AboutMe() {
           </p>
           <p>Contact me:</p>
           <a href="#" className="text-blue-600">
-            Info@mySite.com
+            darshanshihora5@gmail.com
           </a>
         </div>
-        <img className="h-50 w-72" src={img} alt="Image" />
+        <img className="h-50 w-80" src={img} alt="" />
       </div>
     </div>
   );
