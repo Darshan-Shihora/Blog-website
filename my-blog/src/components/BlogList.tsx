@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Blog from "./Blog";
+import { NavLink } from "react-router-dom";
 
 type Blogs = {
   id: string;
@@ -30,38 +31,60 @@ type Blogs = {
 
 function BlogList() {
   const [blogs, setBlogs] = useState<Blogs[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      const response = await fetch(
-        "https://blog-website-c5959-default-rtdb.firebaseio.com/blogs.json"
-      );
-      const responseData = await response.json();
+    setIsLoading(true);
+    try {
+      const fetchBlogs = async () => {
+        const response = await fetch(
+          "https://blog-website-c5959-default-rtdb.firebaseio.com/blogs.json"
+        );
+        if (!response.ok) {
+          throw new Error("Something went wrong!");
+        }
+        const responseData = await response.json();
 
-      const loadedBlogs = [];
-      for (const key in responseData) {
-        loadedBlogs.push({
-          id: key,
-          image: responseData[key].image,
-          title: responseData[key].title,
-        });
-      }
-      setBlogs(loadedBlogs);
-    };
-    fetchBlogs();
+        const loadedBlogs = [];
+        for (const key in responseData) {
+          loadedBlogs.push({
+            id: key,
+            image: responseData[key].image,
+            title: responseData[key].title,
+          });
+        }
+        setBlogs(loadedBlogs);
+      };
+      fetchBlogs();
+    } catch (error: any) {
+      console.log(error.message);
+    }
   }, []);
 
+  const blog = blogs.map((blog) => (
+    <Blog key={blog.id} id={blog.id} image={blog.image} title={blog.title} />
+  ));
+
+  // let content: any = <p>Found no Blogs</p>;
+  let content: any;
+
+  if (isLoading) {
+    content = <p className="text-center mt-3 text-2xl">Fetching Data...</p>;
+  }
+  if (blogs.length > 0) {
+    content = blog;
+  }
+
   return (
-    <>
-      {blogs.map((blog) => (
-        <Blog
-          key={blog.id}
-          id={blog.id}
-          image={blog.image}
-          title={blog.title}
-        />
-      ))}
-    </>
+    <div className="min-h-[30rem]">
+      <NavLink
+        to="new"
+        className="bg-sky-500 w-32 my-4 p-4 text-xl block m-auto items-center text-center text-white hover:bg-sky-600 rounded"
+      >
+        Add Blog
+      </NavLink>
+      {content}
+    </div>
   );
 }
 
