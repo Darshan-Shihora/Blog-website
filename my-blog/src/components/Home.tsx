@@ -1,7 +1,6 @@
 import img from "../assests/travel.webp";
 import image from "../assests/blog.webp";
 import { Link } from "react-router-dom";
-import classes from "./Home.module.css";
 function Home() {
   return (
     <div className="h-auto text-center">
