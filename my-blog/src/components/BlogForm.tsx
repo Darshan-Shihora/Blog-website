@@ -1,4 +1,4 @@
-import { Form, useNavigate } from "react-router-dom";
+import { Form, json, redirect, useNavigate } from "react-router-dom";
 
 const BlogForm: React.FC<{ method: "post" }> = (props) => {
   const navigate = useNavigate();
@@ -81,7 +81,37 @@ type MyParams = {
   blogId: string;
 };
 
-// export const action = async({ request, params }: {request : Request; params: MyParams}) => {
-//   const method = request.method;
-//   const data = await request.formData();
-// }
+type ActionFunctionArgs<T> = {
+  request: Request;
+  params: T;
+};
+
+type MyActionFunction = (
+  args: ActionFunctionArgs<MyParams>
+) => Promise<Response>;
+
+export const action: MyActionFunction = async ({ request, params }) => {
+  const method = request.method;
+  const data = await request.formData();
+
+  const blogData = {
+    image: data.get("image"),
+    title: data.get("title"),
+    date: data.get("date"),
+    description: data.get("description"),
+  };
+  let url = "https://blog-website-c5959-default-rtdb.firebaseio.com/blogs.json";
+
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(blogData),
+  });
+
+  if (!response.ok) {
+    throw json({ message: "Could not save event." }, { status: 500 });
+  }
+  return redirect("/blog");
+};

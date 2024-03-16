@@ -6,6 +6,7 @@ type Blogs = {
   id: string;
   image: string;
   title: string;
+  date: string;
 };
 
 // const BLOGS: Blogs[] = [
@@ -50,6 +51,7 @@ function BlogList() {
           loadedBlogs.push({
             id: key,
             image: responseData[key].image,
+            date: responseData[key].date,
             title: responseData[key].title,
           });
         }
@@ -62,7 +64,13 @@ function BlogList() {
   }, []);
 
   const blog = blogs.map((blog) => (
-    <Blog key={blog.id} id={blog.id} image={blog.image} title={blog.title} />
+    <Blog
+      key={blog.id}
+      id={blog.id}
+      date={blog.date}
+      image={blog.image}
+      title={blog.title}
+    />
   ));
 
   // let content: any = <p>Found no Blogs</p>;

@@ -4,19 +4,22 @@ import heartImg from "../assests/icons8-heart-16.png";
 import eyeImg from "../assests/icons8-eye-16.png";
 import messageImg from "../assests/icons8-message-16.png";
 
-const Blog: React.FC<{ id: string; image: string; title: string }> = (
-  props
-) => {
+const Blog: React.FC<{
+  id: string;
+  image: string;
+  title: string;
+  date: string;
+}> = (props) => {
   return (
-    <div className=" block m-auto h-auto w-[60%] border-2 border-gray-100 my-8 pb-4 box-border shadow-sm">
+    <div className=" block m-auto h-auto w-[45%] border-2 border-gray-100 my-8 pb-4 box-border shadow-sm">
       <Link to={`/blog/${props.id}`}>
-        <img src={`${props.image}`} alt="" />
+        <img className="w-[100%] h-96" src={`${props.image}`} alt="" />
       </Link>
       <div className="flex m-auto my-6 ml-6">
         <img className="size-14 mr-2" src={img} alt="" />
         <div className="text-start items-center text-gray-400">
           <p>Admin</p>
-          <p>Mar 25, 2023</p>
+          <p>{props.date}</p>
         </div>
       </div>
       <Link
