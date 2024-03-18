@@ -1,12 +1,21 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useSubmit } from "react-router-dom";
 import img from "../assests/icons8-administrator-male-96.png";
 import heartImg from "../assests/icons8-heart-16.png";
 import eyeImg from "../assests/icons8-eye-16.png";
 import messageImg from "../assests/icons8-message-16.png";
 
 const BlogItem: React.FC<{ blog: any }> = (props) => {
-  // const params = useParams<BlogId>();
   console.log(props.blog);
+
+  const submit = useSubmit();
+
+  function deleteHandler() {
+    const proceed = window.confirm("Are you sure you want to delete it?");
+
+    if (proceed) {
+      submit(null, { method: "delete" });
+    }
+  }
 
   return (
     <>
@@ -20,10 +29,16 @@ const BlogItem: React.FC<{ blog: any }> = (props) => {
             </div>
           </div>
           <div className="mr-12">
-            <button className="mr-4 bg-sky-400 p-3 px-6 rounded text-white hover:bg-sky-600 text-md">
+            <Link
+              to="edit"
+              className="mr-4 bg-sky-400 p-3 px-6 rounded text-white hover:bg-sky-600 text-md"
+            >
               Edit
-            </button>
-            <button className="ml-4 bg-sky-400 p-3 px-4 rounded text-white hover:bg-sky-600 text-md">
+            </Link>
+            <button
+              className="ml-4 bg-sky-400 p-3 px-4 rounded text-white hover:bg-sky-600 text-md"
+              onClick={deleteHandler}
+            >
               Delete
             </button>
           </div>

@@ -1,7 +1,5 @@
 import {
   ActionFunction,
-  LoaderFunction,
-  LoaderFunctionArgs,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
@@ -11,17 +9,14 @@ import AboutMe from "./components/About-me";
 import BlogList from "./components/BlogList";
 import BlogDetail from "./components/BlogDetail";
 import AddBlog from "./components/AddBlog";
-import { action as addBlogAction } from "./components/BlogForm";
+import { action as manipulateBlogAction } from "./components/BlogForm";
 import EditBlog from "./components/EditBlog";
-import { loader as blogDetailLoader } from "./components/BlogDetail";
+import {
+  loader as blogDetailLoader,
+  action as deleteBlogAction,
+} from "./components/BlogDetail";
 
 function App() {
-  // const { pathname } = useLocation();
-
-  // useEffect(() => {
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // }, [pathname]);
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -40,17 +35,19 @@ function App() {
                 {
                   index: true,
                   element: <BlogDetail />,
+                  action: deleteBlogAction as ActionFunction,
                 },
                 {
                   path: "edit",
                   element: <EditBlog />,
+                  action: manipulateBlogAction as ActionFunction,
                 },
               ],
             },
             {
               path: "new",
               element: <AddBlog />,
-              action: addBlogAction as ActionFunction,
+              action: manipulateBlogAction as ActionFunction,
             },
           ],
         },

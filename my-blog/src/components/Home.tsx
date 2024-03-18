@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="h-auto text-center">
-      <div className="relative">
+      <div className="relative w-full h-[60%]">
         <img src={img} alt="" />
-        <main className="h-auto bottom-60 left-[34rem] absolute justify-center items-center ">
+        <main className=" top-0 left-0 w-full h-full z-1 absolute justify-center items-center ">
           <p className="text-white font-normal text-xl opacity-1 pt-24">
             Travel Blog
           </p>

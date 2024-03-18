@@ -6,7 +6,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-const BlogForm: React.FC<{ method: FormMethod; event: any }> = (props) => {
+const BlogForm: React.FC<{ method: FormMethod; blog: any }> = (props) => {
   const navigate = useNavigate();
   function cancelHandler() {
     navigate("..");
@@ -27,6 +27,7 @@ const BlogForm: React.FC<{ method: FormMethod; event: any }> = (props) => {
           type="text"
           name="title"
           required
+          defaultValue={props.blog ? props.blog.title : ""}
         />
       </p>
       <p>
@@ -39,6 +40,7 @@ const BlogForm: React.FC<{ method: FormMethod; event: any }> = (props) => {
           type="text"
           name="image"
           required
+          defaultValue={props.blog ? props.blog.image : ""}
         />
       </p>
       <p>
@@ -51,6 +53,7 @@ const BlogForm: React.FC<{ method: FormMethod; event: any }> = (props) => {
           type="date"
           name="date"
           required
+          defaultValue={props.blog ? props.blog.date : ""}
         />
       </p>
       <p>
@@ -63,6 +66,7 @@ const BlogForm: React.FC<{ method: FormMethod; event: any }> = (props) => {
           name="description"
           rows={5}
           required
+          defaultValue={props.blog ? props.blog.description : ""}
         />
       </p>
       <div className="flex flex-end gap-4 mt-5">
@@ -108,6 +112,14 @@ export const action: MyActionFunction = async ({ request, params }) => {
   };
   let url = "https://blog-website-c5959-default-rtdb.firebaseio.com/blogs.json";
 
+  if (method === "PATCH") {
+    const blogId = params.blogId;
+    url =
+      "https://blog-website-c5959-default-rtdb.firebaseio.com/blogs/" +
+      blogId +
+      ".json";
+  }
+
   const response = await fetch(url, {
     method: method,
     headers: {
@@ -118,6 +130,9 @@ export const action: MyActionFunction = async ({ request, params }) => {
 
   if (!response.ok) {
     throw json({ message: "Could not save event." }, { status: 500 });
+  }
+  if (method === "PATCH") {
+    return redirect("..");
   }
   return redirect("/blog");
 };

@@ -42,7 +42,7 @@ const Blog: React.FC<{
         <p className="flex">
           <img className="pr-[4px] w-6" src={messageImg} alt="" />2
         </p>
-        <p className="flex absolute left-[96%]">
+        <p className="flex ml-[80%] ">
           <img className="pr-[4px] w-6" src={heartImg} alt="" />
           48
         </p>

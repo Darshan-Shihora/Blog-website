@@ -3,7 +3,7 @@ import BlogForm from "./BlogForm";
 
 function EditBlog() {
   const data: any = useRouteLoaderData("blog-detail");
-  return <BlogForm method="patch" event={data.event} />;
+  return <BlogForm method="patch" blog={data.blog} />;
 }
 
 export default EditBlog;
