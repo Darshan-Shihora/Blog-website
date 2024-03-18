@@ -28,6 +28,12 @@ const Blog: React.FC<{
       >
         {props.title}
       </Link>
+      <Link
+        to={`/blog/${props.id}`}
+        className="ml-6 flex text-md font-serif text-sky-400 hover:text-sky-600"
+      >
+        Click here to read the full blog
+      </Link>
       <div className="border-t-2 flex mx-6 my-4 pt-3 relative">
         <p className="flex pr-4">
           <img className="pr-[3px] w-6" src={eyeImg} alt="" />

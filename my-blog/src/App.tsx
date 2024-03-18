@@ -1,5 +1,7 @@
 import {
   ActionFunction,
+  LoaderFunction,
+  LoaderFunctionArgs,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
@@ -10,6 +12,8 @@ import BlogList from "./components/BlogList";
 import BlogDetail from "./components/BlogDetail";
 import AddBlog from "./components/AddBlog";
 import { action as addBlogAction } from "./components/BlogForm";
+import EditBlog from "./components/EditBlog";
+import { loader as blogDetailLoader } from "./components/BlogDetail";
 
 function App() {
   // const { pathname } = useLocation();
@@ -28,7 +32,21 @@ function App() {
           path: "blog",
           children: [
             { path: "", element: <BlogList /> },
-            { path: ":blogId", element: <BlogDetail /> },
+            {
+              path: ":blogId",
+              id: "blog-detail",
+              loader: blogDetailLoader,
+              children: [
+                {
+                  index: true,
+                  element: <BlogDetail />,
+                },
+                {
+                  path: "edit",
+                  element: <EditBlog />,
+                },
+              ],
+            },
             {
               path: "new",
               element: <AddBlog />,

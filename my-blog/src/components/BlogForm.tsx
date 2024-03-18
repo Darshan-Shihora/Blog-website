@@ -1,6 +1,12 @@
-import { Form, json, redirect, useNavigate } from "react-router-dom";
+import {
+  Form,
+  FormMethod,
+  json,
+  redirect,
+  useNavigate,
+} from "react-router-dom";
 
-const BlogForm: React.FC<{ method: "post" }> = (props) => {
+const BlogForm: React.FC<{ method: FormMethod; event: any }> = (props) => {
   const navigate = useNavigate();
   function cancelHandler() {
     navigate("..");
@@ -77,16 +83,16 @@ const BlogForm: React.FC<{ method: "post" }> = (props) => {
 
 export default BlogForm;
 
-type MyParams = {
+export type MyParams = {
   blogId: string;
 };
 
-type ActionFunctionArgs<T> = {
+export type ActionFunctionArgs<T> = {
   request: Request;
   params: T;
 };
 
-type MyActionFunction = (
+export type MyActionFunction = (
   args: ActionFunctionArgs<MyParams>
 ) => Promise<Response>;
 
