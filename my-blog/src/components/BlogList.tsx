@@ -73,7 +73,6 @@ function BlogList() {
     />
   ));
 
-  // let content: any = <p>Found no Blogs</p>;
   let content: any;
 
   if (isLoading) {

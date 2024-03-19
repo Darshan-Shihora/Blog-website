@@ -1,16 +1,21 @@
 import {
+  ActionFunction,
   Form,
   FormMethod,
   json,
   redirect,
   useNavigate,
+  useNavigation,
 } from "react-router-dom";
 
 const BlogForm: React.FC<{ method: FormMethod; blog: any }> = (props) => {
   const navigate = useNavigate();
+  const navigation = useNavigation();
   function cancelHandler() {
     navigate("..");
   }
+
+  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Form
@@ -37,7 +42,7 @@ const BlogForm: React.FC<{ method: FormMethod; blog: any }> = (props) => {
         <input
           className="block w-full p-1 bg-gray-100 rounded"
           id="image"
-          type="text"
+          type="image"
           name="image"
           required
           defaultValue={props.blog ? props.blog.image : ""}
@@ -74,11 +79,15 @@ const BlogForm: React.FC<{ method: FormMethod; blog: any }> = (props) => {
           type="button"
           className="py-3 px-5 w-24 rounded hover:bg-sky-600 bg-sky-400 text-white"
           onClick={cancelHandler}
+          disabled={isSubmitting}
         >
           Cancel
         </button>
-        <button className="py-3 px-5 w-24 rounded hover:bg-sky-600 bg-sky-400 text-white">
-          Save
+        <button
+          className="py-3 px-5 w-24 rounded hover:bg-sky-600 bg-sky-400 text-white"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Submitting" : "Save"}
         </button>
       </div>
     </Form>
@@ -87,20 +96,7 @@ const BlogForm: React.FC<{ method: FormMethod; blog: any }> = (props) => {
 
 export default BlogForm;
 
-export type MyParams = {
-  blogId: string;
-};
-
-export type ActionFunctionArgs<T> = {
-  request: Request;
-  params: T;
-};
-
-export type MyActionFunction = (
-  args: ActionFunctionArgs<MyParams>
-) => Promise<Response>;
-
-export const action: MyActionFunction = async ({ request, params }) => {
+export const action: ActionFunction = async ({ request, params }) => {
   const method = request.method;
   const data = await request.formData();
 

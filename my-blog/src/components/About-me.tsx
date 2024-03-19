@@ -24,7 +24,10 @@ function AboutMe() {
             Make your company stand out and show your visitors who you are.
           </p>
           <p>Contact me:</p>
-          <a href="#" className="text-blue-600">
+          <a
+            href="mailto: darshanshihora5@gmail.com "
+            className="text-blue-600"
+          >
             darshanshihora5@gmail.com
           </a>
         </div>
