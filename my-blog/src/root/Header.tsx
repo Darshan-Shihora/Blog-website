@@ -1,7 +1,25 @@
 import img from "../../src/assests/icons8-b-96.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { auth, provider } from "../components/FIreBase-config";
+import { signInWithPopup } from "firebase/auth";
+import { useEffect, useState } from "react";
 
 function Header() {
+  const [value, setValue] = useState<any>("");
+  const handleClick = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      setValue(data.user.email);
+      localStorage.setItem("email", data.user.email);
+    });
+  };
+
+  function navigateTo() {
+    localStorage.clear();
+    setValue("");
+  }
+  useEffect(() => {
+    setValue(localStorage.getItem("email"));
+  }, []);
   return (
     <nav className=" bg-sky-400 flex justify-between px-4 sticky top-0 z-10 items-center">
       <span className="text-3xl flex items-center font-bold pt-2">
@@ -40,9 +58,23 @@ function Header() {
           About me
         </NavLink>
       </div>
-      <button className="p-3 mr-3 font-semibold text-white bg-gray-600 hover:bg-gray-500 ">
-        Sign Up
-      </button>
+      <div>
+        {value && (
+          <button
+            onClick={navigateTo}
+            className="p-3 mr-3 text-right font-semibold text-white bg-gray-600 hover:bg-gray-500 "
+          >
+            Logout
+          </button>
+        )}
+        <Link
+          to="/"
+          onClick={handleClick}
+          className="p-3 mr-3 font-semibold text-white bg-gray-600 hover:bg-gray-500 "
+        >
+          Sign Up
+        </Link>
+      </div>
     </nav>
   );
 }

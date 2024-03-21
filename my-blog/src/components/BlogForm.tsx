@@ -42,7 +42,7 @@ const BlogForm: React.FC<{ method: FormMethod; blog: any }> = (props) => {
         <input
           className="block w-full p-1 bg-gray-100 rounded"
           id="image"
-          type="image"
+          type="text"
           name="image"
           required
           defaultValue={props.blog ? props.blog.image : ""}

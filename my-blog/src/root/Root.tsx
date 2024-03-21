@@ -9,6 +9,7 @@ function Root() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathname]);
+
   return (
     <>
       <Header />

@@ -1,10 +1,10 @@
 import img from "../../src/assests/profile.png";
 function AboutMe() {
   return (
-    <div className="h-auto text-center my-8 mx-60 ">
+    <div className="h-auto text-center my-8 sm:mx-60 ml-10 ">
       <h1 className="h-auto text-3xl font-bold text-start py-8">About me</h1>
-      <div className="flex space-x-16">
-        <div className="flex-col text-start font-serif">
+      <div className="flex">
+        <div className="flex-col text-start font-serif pr-20">
           <p className="pb-4">
             I'm a paragraph. Click here to add your own text and edit me. It’s
             easy. Just click “Edit Text” or double click me to add your own
@@ -31,7 +31,7 @@ function AboutMe() {
             darshanshihora5@gmail.com
           </a>
         </div>
-        <img className="h-50 w-80" src={img} alt="" />
+        <img className="h-auto w-80" src={img} alt="" />
       </div>
     </div>
   );
