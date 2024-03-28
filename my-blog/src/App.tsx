@@ -1,7 +1,9 @@
 import {
   ActionFunction,
+  Navigate,
   RouterProvider,
   createBrowserRouter,
+  useNavigate,
 } from "react-router-dom";
 import Root from "./root/Root";
 import Home from "./components/Home";
@@ -15,8 +17,37 @@ import {
   loader as blogDetailLoader,
   action as deleteBlogAction,
 } from "./components/BlogDetail";
+import { useEffect, useState } from "react";
+import { auth, provider } from "./components/FIreBase-config";
+import { signInWithPopup } from "firebase/auth";
+import Login from "./components/Login";
+import Signup from "./components/SignUp";
 
 function App() {
+  const [userName, setUserName] = useState("");
+  // const [isSignedIn, setIsSignedIn] = useState(false);
+  // const [signupCompleted, setSignupCompleted] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((userName) => {
+      if (userName) {
+        setUserName(userName.displayName);
+        // setIsSignedIn(true);
+      } else {
+        setUserName("");
+        // setIsSignedIn(false);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // useEffect(() => {
+  //   if (isSignedIn) {
+  //     setSignupCompleted(true);
+  //   }
+  // }, [isSignedIn]);
+
+  // const content = signupCompleted ? <Root /> : <Signup />;
   const router = createBrowserRouter([
     {
       path: "/",
@@ -54,6 +85,8 @@ function App() {
         { path: "about-me", element: <AboutMe /> },
       ],
     },
+    { path: "/sign-up", element: <Signup /> },
+    { path: "/login", element: <Login /> },
   ]);
 
   return (

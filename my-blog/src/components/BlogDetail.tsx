@@ -11,7 +11,7 @@ import { Suspense } from "react";
 
 function BlogDetail() {
   const blog: any = useRouteLoaderData("blog-detail");
-
+  
   return (
     <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
       <Await resolve={blog}>

@@ -31,7 +31,7 @@ function AboutMe() {
             darshanshihora5@gmail.com
           </a>
         </div>
-        <img className="h-auto w-80" src={img} alt="" />
+        <img className="h-80 w-80" src={img} alt="" />
       </div>
     </div>
   );
